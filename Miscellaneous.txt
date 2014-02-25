@@ -1,0 +1,10 @@
+----Moodle's binlog format issue----
+Setting the transaction-isolation from READ COMMITTED to REPEATABLE READ will allow installation and Moodle to operate as normal in running its transactions. 
+
+Assuming moodle is the base content dir: domain.com/web/content/lib/dml/mysqli_native_moodle_database.php
+Search for and comment out: $sql = "SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED";
+Replace with the following: $sql = "SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ";
+
+
+----Joomla Security Token Error popup on manual installs----
+Just keep clicking through it.

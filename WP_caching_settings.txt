@@ -1,0 +1,38 @@
+Quick Cache----- Best for Wordpress Multi-site installations
+
+Internal Debugging off.
+Don't cache pages for logged in users.
+Don't cache query string GET requests.
+Disallow double-caching on the browser.
+Set the expiration time on Quick Cache files: 86400 (24 hours).
+Dynamic cache pruning single (prune only the specific post/page).
+The No-cache settings were not touched .
+Mutex file locking set to Flock (rather than Semaphore, since this is not a dedicated server, it misbehaves a bit as Semaphore). This MAY need to be Flock for multi-site and Sempahore for single site. Testing this out, just in case.
+MD5 salt left alone.
+Auto-cache engine enabled.
+
+
+SuperCache----- Best for everyone else, not so good for multi-site installations. Helps "fix" that pesky terrible Time to First Byte. CDN Sync Tool can be used JUST to minify the JS and CSS to help a bit.
+
+Go to settings for SuperCache, click on the Advanced Tab, then mark the following items:
+Cache hits to this website for quick access. (Recommended)
+Use mod_rewrite to serve cache files. (Recommended)
+Compress pages so they're served more quickly to visitors. (Recommended)
+Don't cache pages for known users. (Recommended)
+Cache rebuild. Serve a supercache file to anonymous users while a new file is being generated. (Recommended)
+Mobile device support. (External plugin or theme required. See the FAQ for further details.)
+Extra homepage checks. (Very occasionally stops homepage caching) (Recommended)
+Click Update Status
+
+After the screen refreshes scroll down to the Mod Rewrite Rules and click Update Mod_Rewrite Rules
+Scroll down to Expiry Time & Garbage Collection
+Change cache timeout to 0 seconds then click Change Expiration
+Click on the Preload Tab
+Change Refresh preloaded cache files every ___ minutes. (0 to disable, minimum 30 minutes.) to be something high enough to not trigger constantly, like 1440 (24 hours) or 10080 (1 week)
+Click Preload mode (garbage collection only on legacy cache files. Recommended.)
+Change Preload ___ Articles to something small if the number of articles is high. Each choice is 10% of the current articles, so the first 10% is usually a safe choice.
+Click Update Settings, then after the page refreshes click Preload Cache Now and in around 10 or 15 seconds the cache will start building for the site.
+
+HyperCache-----
+DON'T DO IT. It runs terribly and seems to be fairly useless. I actually had a page load SLOWER because of it.
+

@@ -1,0 +1,37 @@
+#!/bin/sh
+
+#Set information specific to your site
+siteroot="YOUR FULL SITE PATH" 
+db_host="YOUR DB HOST"
+db_user="YOUR DB USERNAME"
+db_password="YOUR DB PASSWORD"
+db_name="YOUR DB NAME"
+
+#Set the date and name for the backup files
+date=`date '+%F-%H:%M'`
+backupname="backup.$date.tar.gz"
+
+#Dump the mysql database
+echo $siteroot;
+
+echo "Starting backup at:"; date
+
+mysqldump -h $db_host -u $db_user --password="$db_password" $db_name > $siteroot/db_backup.sql
+if [ ! -s $siteroot/db_backup.sql ]
+        then echo "The SQL backup failed! Exiting..." && exit 0
+fi
+
+echo "Database dump complete! Creating site contents backup at:"; date
+
+#Backup Site
+tar cpfP $siteroot/sitebackup.tar $siteroot/web/content/
+if [ ! -s $siteroot/sitebackup.tar ]
+        then echo "Site contents backup failed! Exiting..." && exit 0
+fi
+
+echo "Contents compression complete! Compressing contents and database into single file at:"; date
+
+#Compress DB and Site backup into one file
+tar czpfP $siteroot/$backupname --exclude 'sitebackup' --remove-files $siteroot/sitebackup.tar $siteroot/db_backup.sql
+echo "Full site backup complete at:"; date
+

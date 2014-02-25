@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# Preload a web site's cache
+#
+#---Doesn't quite work yet in the intended environment
+#
+#
+
+site=$(echo ${PWD##*/})
+tmp="preload"
+log="log.txt"
+
+echo "Crawling $site."
+
+# Remove any prior downloaded files.
+rm -rf $tmp
+
+# Crawl the site
+time wget --level=inf --directory-prefix=$tmp --output-file=$log -nv http://$site/
+
+# When the crawl is done, the download files are removed.
+rm -rf $tmp
+
+echo
+echo "Done.  A log of the crawl is in '$log'."
+
+#End script
+
+Just dump the above script into a file (preload.sh works nicely), put it into the site root folder (not web/content!) and set it up as a cron task to run every 24 hours. 
+
+Credit for this to http://nadeausoftware.com/node/98#Howtopreloadthepagecache
+Tweaks were made to this to make it more user-friendly for Cloud Sites customers.
+

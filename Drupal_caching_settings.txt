@@ -1,0 +1,19 @@
+Log into the admin panel
+
+Click on Configuration
+Click on performance
+Check "Cache pages for anonymous users"
+Check "Cache blocks"
+Change "Minimum cache lifetime" based on how often the site is updated (recommend at least 1 hour)
+Change "Expiration of cached pages" based on how often the page is updated by the owner (recommend 1 day)
+Check "Compress cached pages"
+Check Aggregate and compress CSS files"
+Check Aggregate JavaScript files"
+Click "Save configuration"
+
+
+Once this has been done, anonymously visit any pages that need to be cached and refresh
+them a couple of times to build the cache.
+
+
+

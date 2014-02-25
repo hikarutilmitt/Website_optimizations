@@ -1,0 +1,6 @@
+#--Enables zlib compression. The compression level goes from 0 to 9 (low to high) or uses -1 for server defined. Might raise CCs, haven't tested much yet.
+php_flag zlib.output_compression on
+php_value zlib.output_compression_level 5
+
+#--Redirects the session saving path to something more local
+php_value session.save_path <path to folder>
