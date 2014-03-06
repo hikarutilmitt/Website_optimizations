@@ -4,3 +4,17 @@ php_value zlib.output_compression_level 5
 
 #--Redirects the session saving path to something more local
 php_value session.save_path <path to folder>
+
+
+#--Another way of setting up gzip along with some rather aggressive cache expiration headers
+Header unset ETag
+FileETag None
+
+ExpiresActive On
+ExpiresDefault "now plus 10 years"
+
+#Enable gzip compression with mod_deflate
+<FilesMatch "\\.(js|css|html|htm|php|xml|eot)$">
+SetOutputFilter DEFLATE
+</FilesMatch>
+
