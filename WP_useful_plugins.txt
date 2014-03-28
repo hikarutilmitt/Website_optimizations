@@ -2,4 +2,6 @@ Advanced Automatic Updates
 EWWW Image Optimizer
 Wordfence Security
 WP Htaccess Editor
+WordPress MU Domain Mapping
+Rackspace CloudFile CDN (sic)
 
