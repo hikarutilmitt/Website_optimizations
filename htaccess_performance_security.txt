@@ -1,0 +1,88 @@
+php_value upload_max_filesize 64M
+php_value post_max_size 64M
+
+
+###---Uncomment one of the following sections' single-# lines to
+###---enable specific URL handling types. If you have the domain
+###---set to use www, uncomment the first, if using non-www, uncomment the second.
+
+##--Rewrite to www in a generic way that requires no special rules
+#RewriteEngine On
+#RewriteBase /
+#RewriteCond %{HTTP_HOST} !^www\.
+#RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+##--Rewrite to non-www in a generic way
+#RewriteEngine On
+#RewriteBase /
+#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+#RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+###---End of URL rules---###
+
+
+
+###-----Security Rules-----###
+#--Prevent directory listings
+Options All -Indexes
+
+#--Prevent viewing of .htaccess file--#
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+###-----End of Security Rules-----###
+
+
+
+#--Uses mod_deflate for sending compressed requests--#
+SetOutputFilter DEFLATE
+
+#--Don't compress these
+SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary
+Header append Vary User-Agent env=!dont-vary
+
+#--compresses static files--#
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE font/opentype font/truetype font/eot
+
+ExpiresActive on
+ExpiresByType image/jpeg A604800
+ExpiresByType image/gif A604800
+ExpiresByType image/png A604800
+ExpiresByType application/x-shockwave-flash A604800
+ExpiresByType audio/mpeg A604800
+ExpiresByType text/x-javascript A604800
+ExpiresByType image/x-icon A604800
+ExpiresByType text/css A604800
+ExpiresByType font/eot A604800
+ExpiresByType font/ttf A604800
+ExpiresByType text/javascript A604800
+ExpiresByType text/html A604800
+ExpiresByType text/xml A604800
+ExpiresByType application/x-javascript A604800
+
+
+#--Add some common file types
+#--A complete list can be viewed here: http://www.htaccess-guide.com/adding-mime-types/
+Addtype font/eot .eot
+Addtype font/truetype .ttf
+AddType image/svg+xml .svg .svgz
+AddType image/x-icon .ico
+AddType application/x-shockwave-flash .swf
+AddType video/mpeg .mpeg .mpg .mpe
+AddType video/quicktime .qt .mov
+
+
+#--Uncomment and Add a file extension to force the browser to download instead of stream
+#--Use multiple lines to add multiple extensions
+# AddType application/octet-stream FILEEXTENSIONGOESHERE
