@@ -1,0 +1,28 @@
+#----A few notes about using EE within Cloud sites
+-Do not use memcache, it will not work as customers do not have access to the CS memcache
+-Setup minimee for minifying js and css more efficiently: http://johndwells.com/software/minimee
+-Don't use a persistent DB connection as this will stack your queries and you'll run out of connections
+
+
+#------use Template caching
+In the admin panel:
+Design -> Templates -> Template Preferences
+Select all the templates that need to be cached
+Change "Enable Caching" to Yes
+Set a reasonable refresh interval (this is in minutes, so 60 for an hour, 1440 for a day, etc)
+Click update
+
+
+#------Use a non-persistent Database Connection
+Admin -> System Administration -> Database Settings
+Persistent Database Connection set to "No"
+
+#------Use ImageMagick for Image resizing---If desired
+Admin -> System Administration -> Image Resizing Preferences
+Change "Image Resizing Protocol" to ImageMagick
+
+#------Disable dynamic Channel Queries
+Admin -> Channel Administration -> Global Preferences
+Set Cache Dynamic Channel Queries to "No"
+
+
