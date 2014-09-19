@@ -1,8 +1,25 @@
-#--Rewrite to www in a generic way that requires no special rules
-RewriteEngine On
-RewriteBase /
-RewriteCond %{HTTP_HOST} !^www\.
-RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+php_value upload_max_filesize 64M
+php_value post_max_size 64M
+
+
+###---Uncomment one of the following sections' single-# lines to
+###---enable specific URL handling types. If you have the domain
+###---set to use www, uncomment the first, if using non-www, uncomment the second.
+
+##--Rewrite to www in a generic way that requires no special rules
+#RewriteEngine On
+#RewriteBase /
+#RewriteCond %{HTTP_HOST} !^www\.
+#RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+##--Rewrite to non-www in a generic way
+#RewriteEngine On
+#RewriteBase /
+#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+#RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+###---End of URL rules---###
+
 
 #--Prevent viewing of .htaccess file
 <Files .htaccess>
@@ -14,6 +31,7 @@ deny from all
 Options All -Indexes
 
 #--Rewritten rewrite to only require one pass for nonexistent files/folders
+#----!!!-May or may not work, still kind of testing
 RewriteEngine on
 RewriteBase /
 RewriteCond $1 ^(index\.php)?$ [OR]
@@ -27,9 +45,17 @@ RewriteRule . /index.php [L]
 #--Redirects to another URL entirely
 Redirect 301 / domain-to-redirect-to
 
-#--Allows SVG files to render properly and gzip the file transfer
-AddType image/svg+xml svg svgz
-AddEncoding gzip svgz
+#--Add some common file types
+#--A complete list can be viewed here: http://www.htaccess-guide.com/adding-mime-types/
+Addtype font/eot .eot
+Addtype font/truetype .ttf
+AddType image/svg+xml .svg .svgz
+AddType image/x-icon .ico
+AddType application/x-shockwave-flash .swf
+AddType video/mpeg .mpeg .mpg .mpe
+AddType video/quicktime .qt .mov
 
-#--Allows favicon.ico to work like it should
-AddType image/x-icon ico
+#--Uncomment and Add a file extension to force the browser to download instead of stream
+#--Use multiple lines to add multiple extensions
+# AddType application/octet-stream FILEEXTENSIONGOESHERE
+
