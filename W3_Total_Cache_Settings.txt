@@ -1,0 +1,70 @@
+#---Seems that it works!
+----General Settings----
+Enable Page Cache
+Page Cache method: disk: Basic
+
+Enable Minify
+Minify mode: Manual
+Minify cache method: disk
+All others in section default
+
+Do not enable database cache
+
+Do not enable object cache
+
+Enable browser cache
+
+Enable CDN
+CDN Type Rackspace cloud Files
+
+Enable Verify rewrite rules
+
+DO NOT ENABLE FILE LOCKING
+
+Enable Optimize disk enhanced page and minify disk caching for NFS 
+
+Save all settings
+
+----Page Cache----
+Check Cache front page
+Check Cache feeds: site, categories, tags, comments
+Check Cache SSL (https) requests
+Check Cache URIs with query string variables
+Uncheck Cache 404 (not found) pages
+Check Cache requests only for <siteurl> site address
+Check Don't cache pages for logged in users
+
+Check automatically prime the page cache
+
+Leave the rest default
+
+Save all Settings
+
+----Minify----
+Check Rewrite URL structure
+HTML & XML check Enable, Inline CSS minification, Inline JS minification
+Enable JS Minify
+Enable CSS Minifyi
+
+Save all settings
+
+----Browser Cache----
+enable all of it except Prevent caching of objects after settings change and  Disable cookies for static files 
+
+Save all settings
+
+----CDN----
+Check all except Force over-writing of existing files and  Import external media library attachments
+
+Input the user's account login, API key, etc for the CDN settings
+
+test Cloud files Upload to ensure it works
+
+check Automatically upload minify files and  Export changed files automatically
+
+Save all settings
+
+
+
+
+Hit the site once to help it build its cache. Verify it works by visiting a few times after, using webpagetest.org or gtmetrix.

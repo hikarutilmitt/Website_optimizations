@@ -16,7 +16,7 @@ echo $siteroot;
 
 echo "Starting backup at:"; date
 
-mysqldump -h $db_host -u $db_user --password="$db_password" $db_name > $siteroot/db_backup.sql
+mysqldump --single-transaction -h $db_host -u $db_user --password="$db_password" $db_name > $siteroot/db_backup.sql
 if [ ! -s $siteroot/db_backup.sql ]
         then echo "The SQL backup failed! Exiting..." && exit 0
 fi

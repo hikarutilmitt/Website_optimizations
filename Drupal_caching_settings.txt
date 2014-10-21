@@ -1,6 +1,12 @@
 Log into the admin panel
 
 Click on Configuration
+Click on File System
+update the "Temporary directory" field to point to the mount path for the site instead of the /tmp folder:
+Example: /mnt/stor09-wc1-ord1/123456/drupal.somesite.blah/tmp
+Click "Save configuration"
+
+Click on Configuration
 Click on performance
 Check "Cache pages for anonymous users"
 Check "Cache blocks"

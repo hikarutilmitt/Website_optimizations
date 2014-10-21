@@ -1,0 +1,77 @@
+#--Rewrite to www in a generic way that requires no special rules
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+#--Rewrite to non-www in a generic way
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+
+#--Prevent viewing of .htaccess file
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+#--Prevent directory listings
+Options All -Indexes
+
+#--Rewritten rewrite to only require one pass for nonexistent files/folders
+RewriteEngine on
+RewriteBase /
+RewriteCond $1 ^(index\.php)?$ [OR]
+RewriteCond $1 \.(gif|jpg|css|js|ico)$ [NC,OR]
+RewriteCond %{REQUEST_FILENAME} !-f [OR]
+RewriteCond %{REQUEST_FILENAME} !-d [OR]
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.*)$ - [S=1]
+RewriteRule . /index.php [L]
+
+#--Redirects to another URL entirely
+Redirect 301 / domain-to-redirect-to
+
+#--Allows SVG files to render properly and gzip the file transfer
+AddType image/svg+xml svg svgz
+AddEncoding gzip svgz
+
+#--Allows favicon.ico to work like it should
+AddType image/x-icon ico
+
+####---Default Wordpress rule for permalinks---####
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+
+
+####---Redirect to mobile site---###
+Options +FollowSymlinks
+RewriteEngine on
+RewriteBase /
+
+# prevent looping
+RewriteCond %{HTTP_HOST} !^m.mysite.com$
+
+# if the browser accepts these mime-types, it's definitely mobile, or pretending to be
+RewriteCond %{HTTP_ACCEPT} "text\/vnd\.wap\.wml|application\/vnd\.wap\.xhtml\+xml" [NC,OR]
+
+# a bunch of user agent tests
+RewriteCond %{HTTP_USER_AGENT} "sony|symbian|nokia|samsung|mobile|windows ce|epoc|opera" [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "mini|nitro|j2me|midp-|cldc-|netfront|mot|up\.browser|up\.link|audiovox"[NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "blackberry|ericsson,|panasonic|philips|sanyo|sharp|sie-"[NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "portalmmm|blazer|avantgo|danger|palm|series60|palmsource|pocketpc"[NC,OR]
+RewriteCond %{HTTP_USER_AGENT} "smartphone|rover|ipaq|au-mic,|alcatel|ericy|vodafone\/|wap1\.|wap2\.|iPhone|android"[NC]
+
+# rewrite rules here
+RewriteRule ^(.+)\$ http://m.mysite.com/$1 [R=302,NC]
