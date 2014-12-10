@@ -21,6 +21,8 @@ Enable Verify rewrite rules
 
 DO NOT ENABLE FILE LOCKING
 
+Save all settings
+
 Enable Optimize disk enhanced page and minify disk caching for NFS 
 
 Save all settings
@@ -35,6 +37,7 @@ Check Cache requests only for <siteurl> site address
 Check Don't cache pages for logged in users
 
 Check automatically prime the page cache
+Note: the value here matters! 86400 seconds is 24 hours, which is a safe, daily refresh, 604800 is a week, which is useful for less frequently updated pages.
 
 Leave the rest default
 
