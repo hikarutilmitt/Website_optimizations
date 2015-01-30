@@ -59,3 +59,15 @@ AddType video/quicktime .qt .mov
 #--Use multiple lines to add multiple extensions
 # AddType application/octet-stream FILEEXTENSIONGOESHERE
 
+
+#--force www and SSL in two parts
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{ENV:HTTPS} !on [NC]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R,L]
+
