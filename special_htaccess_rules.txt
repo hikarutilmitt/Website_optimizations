@@ -10,6 +10,12 @@ RewriteBase /
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
+#Force SSL on a specific directory
+RewriteEngine on
+RewriteBase /
+RewriteCond %{HTTPS} off
+RewriteRule ^FOLDER/(.*)$ https://%{HTTP_HOST}/FOLDER/$1 [R,L]
+
 
 #--Prevent viewing of .htaccess file
 <Files .htaccess>
