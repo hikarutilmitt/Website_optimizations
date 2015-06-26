@@ -1,0 +1,45 @@
+#--Blocks IPs from Hong Kong
+#
+Order Allow,Deny
+Deny from env=DenyAccess
+Allow from all
+SetEnvIf X-Cluster-Client-Ip "^58\.65\.232\.0/21 " DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^59\.148\.0\.0/15" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^61\.244\.0\.0/16" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^103\.253\.96\.0/22" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^103\.253\.140\.0/22" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^110\.173\.48\.0/20" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^112\.121\.160\.0/19" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^112\.213\.64\.0/20" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^112\.213\.96\.0/19" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^113\.10\.128\.0/17" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^113\.28\.160\.0/19" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^113\.252\.0\.0/14" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^118\.99\.0\.0/18" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^118\.140\.0\.0/14" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^121\.127\.224\.0/19" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^122\.10\.0\.0/17" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^123\.242\.229\.0/24" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^147\.8\.0\.0/16" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^180\.235\.134\.0/24" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^202\.69\.64\.0/19" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^202\.85\.128\.0/19" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^202\.133\.8\.0/21" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^203\.78\.32\.0/21" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^203\.198\.0\.0/16" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^203\.218\.0\.0/16" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^210\.176\.0\.0/19" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^210\.176\.48\.0/20" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^210\.176\.64\.0/18" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^210\.176\.128\.0/17" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^210\.177\.0\.0/16" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^210\.209\.64\.0/18" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^218\.103\.0\.0/16" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^218\.250\.0\.0/16" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^218\.252\.0\.0/14" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^219\.76\.0\.0/14" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^219\.90\.112\.0/20" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^222\.166\.0\.0/16" DenyAccess
+SetEnvIf X-Cluster-Client-Ip "^223\.16\.0\.0/14" DenyAccess
+#
+#--End Blocking HK IPs
