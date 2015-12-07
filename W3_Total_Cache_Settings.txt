@@ -23,7 +23,7 @@ DO NOT ENABLE FILE LOCKING
 
 Save all settings
 
-Enable Optimize disk enhanced page and minify disk caching for NFS 
+Enable Optimize disk basic page and minify disk caching for NFS 
 
 Save all settings
 
