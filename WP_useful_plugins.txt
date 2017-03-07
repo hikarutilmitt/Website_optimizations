@@ -1,7 +1,7 @@
-Advanced Automatic Updates
+Easy Updates Manager
 EWWW Image Optimizer
 Wordfence Security
 WP Htaccess Editor
 WordPress MU Domain Mapping
-Rackspace CloudFile CDN (sic)
-
+W3 Total Cache
+Updraft Plus
